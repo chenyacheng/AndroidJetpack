@@ -2,8 +2,9 @@ package com.chenyacheng.androidjetpack.ui.timer;
 
 import androidx.lifecycle.ViewModel;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author chenyacheng
@@ -11,33 +12,30 @@ import java.util.TimerTask;
  */
 public class TimerViewModel extends ViewModel {
 
-    private Timer timer;
-    private int currentSecond;
+    private int currentSecond = 0;
+    private ScheduledExecutorService scheduledExecutorService;
 
     @Override
     protected void onCleared() {
         //清理资源
-        timer.cancel();
-        timer = null;
+        scheduledExecutorService.shutdown();
+        scheduledExecutorService = null;
         super.onCleared();
     }
 
-    //开始计时
+    /**
+     * 开始计时
+     */
     public void startTiming() {
-        if (timer == null) {
-            currentSecond = 0;
-            timer = new Timer();
-            TimerTask timerTask = new TimerTask() {
-                @Override
-                public void run() {
-                    currentSecond++;
-                    if (onTimeChangeListener != null) {
-                        onTimeChangeListener.onTimeChanged(currentSecond);
-                    }
-                }
-            };
-            timer.schedule(timerTask, 1000, 1000);
-        }
+        long initialDelay = 1;
+        long period = 1;
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
+        scheduledExecutorService.scheduleAtFixedRate(() -> {
+            currentSecond++;
+            if (onTimeChangeListener != null) {
+                onTimeChangeListener.onTimeChanged(currentSecond);
+            }
+        },initialDelay,period, TimeUnit.SECONDS);
     }
 
     private OnTimeChangeListener onTimeChangeListener;
@@ -47,6 +45,11 @@ public class TimerViewModel extends ViewModel {
     }
 
     public interface OnTimeChangeListener {
+        /**
+         * 时间监听
+         *
+         * @param second 秒数
+         */
         void onTimeChanged(int second);
     }
 
