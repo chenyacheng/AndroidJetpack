@@ -1,4 +1,6 @@
-package com.chenyacheng.androidjetpack.ui.timer;
+package com.chenyacheng.androidjetpack.ui.viewmodel;
+
+import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -14,12 +16,14 @@ public class TimerViewModel extends ViewModel {
 
     private int currentSecond = 0;
     private ScheduledExecutorService scheduledExecutorService;
+    private OnTimeChangeListener onTimeChangeListener;
 
     @Override
     protected void onCleared() {
-        //清理资源
+        // 清理资源
         scheduledExecutorService.shutdown();
         scheduledExecutorService = null;
+        onTimeChangeListener = null;
         super.onCleared();
     }
 
@@ -31,14 +35,13 @@ public class TimerViewModel extends ViewModel {
         long period = 1;
         scheduledExecutorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
         scheduledExecutorService.scheduleAtFixedRate(() -> {
+            Log.e("Thread", "线程池");
             currentSecond++;
             if (onTimeChangeListener != null) {
                 onTimeChangeListener.onTimeChanged(currentSecond);
             }
         },initialDelay,period, TimeUnit.SECONDS);
     }
-
-    private OnTimeChangeListener onTimeChangeListener;
 
     public void setOnTimeChangeListener(OnTimeChangeListener onTimeChangeListener) {
         this.onTimeChangeListener = onTimeChangeListener;

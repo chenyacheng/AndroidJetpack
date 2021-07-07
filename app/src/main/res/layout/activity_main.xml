@@ -18,6 +18,11 @@
         android:text="点击进入ViewModel"
         android:textAllCaps="false" />
 
-
+    <Button
+        android:id="@+id/livedata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击进入Livedata"
+        android:textAllCaps="false" />
 
 </LinearLayout>

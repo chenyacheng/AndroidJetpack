@@ -1,2 +1,7 @@
 # AndroidJetpack
 Android Jetpack组件库学习
+
+LifeCycle：帮助开发者创建可感知生命周期的组件。
+ViewModel：用于存放页面所需要的各种数据，对页面来说，它并不关心ViewModel中的业务逻辑，它只关心需要展示的数据是什么，并且希望在数据发送变化时，能及时得到通知并做出更新。
+LiveData：在ViewModel中的数据发生变化时通知页面，用于包装ViewModel中那些需要被外界观察的数据。
+

@@ -1,4 +1,4 @@
-package com.chenyacheng.androidjetpack.ui.timer;
+package com.chenyacheng.androidjetpack.ui.viewmodel;
 
 import android.os.Bundle;
 import android.widget.TextView;

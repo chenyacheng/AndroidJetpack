@@ -17,8 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.timer.TimerActivity" />
+        <activity android:name=".ui.viewmodel.TimerActivity" />
         <activity android:name=".ui.lifecycle.LifecycleTestActivity" />
+        <activity android:name=".ui.livedata.LiveDataActivity" />
 
         <service android:name=".ui.lifecycle.MyService" />
 

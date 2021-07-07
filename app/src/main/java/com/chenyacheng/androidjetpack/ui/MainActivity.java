@@ -1,16 +1,15 @@
 package com.chenyacheng.androidjetpack.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.chenyacheng.androidjetpack.databinding.ActivityMainBinding;
 import com.chenyacheng.androidjetpack.ui.lifecycle.LifecycleTestActivity;
-import com.chenyacheng.androidjetpack.ui.timer.TimerActivity;
+import com.chenyacheng.androidjetpack.ui.livedata.LiveDataActivity;
+import com.chenyacheng.androidjetpack.ui.viewmodel.TimerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, TimerActivity.class));
+            }
+        });
+
+        binding.livedata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LiveDataActivity.class));
             }
         });
     }

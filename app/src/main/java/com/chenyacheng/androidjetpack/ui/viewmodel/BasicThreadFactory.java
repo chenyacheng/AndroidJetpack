@@ -1,4 +1,4 @@
-package com.chenyacheng.androidjetpack.ui.timer;
+package com.chenyacheng.androidjetpack.ui.viewmodel;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author chenyacheng
  * @date 2021/07/05
  */
-class BasicThreadFactory implements ThreadFactory {
+public class BasicThreadFactory implements ThreadFactory {
 
     private final AtomicLong threadCounter;
     private final ThreadFactory wrappedFactory;
