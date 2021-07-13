@@ -55,8 +55,10 @@ public class LiveDataViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         // 清理资源
-        scheduledExecutorService.shutdown();
-        scheduledExecutorService = null;
+        if (null != scheduledExecutorService) {
+            scheduledExecutorService.shutdown();
+            scheduledExecutorService = null;
+        }
         currentSecond = null;
         super.onCleared();
     }

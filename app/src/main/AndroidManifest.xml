@@ -20,6 +20,7 @@
         <activity android:name=".ui.viewmodel.TimerActivity" />
         <activity android:name=".ui.lifecycle.LifecycleTestActivity" />
         <activity android:name=".ui.livedata.LiveDataActivity" />
+        <activity android:name=".ui.navigation.NavigationActivity" />
 
         <service android:name=".ui.lifecycle.MyService" />
 
