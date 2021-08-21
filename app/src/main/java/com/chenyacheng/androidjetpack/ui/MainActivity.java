@@ -2,6 +2,7 @@ package com.chenyacheng.androidjetpack.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("lifecycle", "onCreate");
+        System.out.println(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -53,8 +56,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.v("lifecycle", "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.v("lifecycle", "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.v("lifecycle", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.v("lifecycle", "onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.v("lifecycle", "onRestart");
+    }
+
+    @Override
     protected void onDestroy() {
         binding = null;
         super.onDestroy();
+        Log.v("lifecycle", "onDestroy");
     }
 }
